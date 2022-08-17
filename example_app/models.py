@@ -2,12 +2,15 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.indexes import Index
 from django.utils.translation import gettext as _
-from model_utils.models import TimeStampedModel, SoftDeletableModel
+from model_utils.models import TimeStampedModel, SoftDeletableModel, StatusModel
 
+from example_app.constants import ExampleStatus
 User = get_user_model()
 
 
-class Example(TimeStampedModel, SoftDeletableModel):
+class Example(TimeStampedModel, SoftDeletableModel, StatusModel):
+    STATUS = ExampleStatus.choices()
+
     name = models.CharField(max_length=255, null=True, default=None)
     total = models.IntegerField(default=0, null=True)
 
