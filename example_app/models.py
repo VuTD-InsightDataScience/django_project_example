@@ -12,7 +12,7 @@ User = get_user_model()
 class Example(TimeStampedModel, SoftDeletableModel, StatusModel):
     STATUS = ExampleStatus.choices()
 
-    name = models.CharField(max_length=255, null=True, default=None)
+    name = models.CharField(max_length=255, blank=True, default=None)
     total = models.IntegerField(default=0, null=True)
 
     def __str__(self):

@@ -1,6 +1,6 @@
 [flake8]
 max-line-length = 120
-select = C,E,F,W,DJ03,DJ06,DJ07,DJ08,DJ10,DJ11,DJ12
+select = C,E,F,W,DJ,DJ10
 exclude =
   .git,
   .env,
