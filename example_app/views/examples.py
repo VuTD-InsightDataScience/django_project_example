@@ -38,8 +38,9 @@ class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.List
         return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
-        status_display = request.data.pop('status_display')
-        request.data['status'] = dict({y: x for (x, y) in ExampleStatus.choices()}).get(status_display)
+        status_display = request.data.pop('status_display', None)
+        if status_display:
+            request.data['status'] = dict({y: x for (x, y) in ExampleStatus.choices()}).get(status_display)
         return super().create(request, *args, **kwargs)
 
 
@@ -54,3 +55,9 @@ class RetrieveUpdateDestroyExampleAPIView(viewsets.GenericViewSet, generics.Retr
 
     def check_object_permissions(self, request, obj):
         return super().check_object_permissions(request, obj)
+
+    def update(self, request, *args, **kwargs):
+        status_display = request.data.pop('status_display', None)
+        if status_display:
+            request.data['status'] = dict({y: x for (x, y) in ExampleStatus.choices()}).get(status_display)
+        return super().update(request, *args, **kwargs)

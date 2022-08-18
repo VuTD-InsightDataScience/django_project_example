@@ -21,3 +21,9 @@ class CreateExampleDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Example
         fields = ('name', 'status')
+
+
+class UpdateExampleDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Example
+        fields = ('name', 'status')
