@@ -38,7 +38,6 @@ class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.List
         return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
-        request.data['creator'] = request.user
         status_display = request.data.pop('status_display')
         request.data['status'] = dict({y: x for (x, y) in ExampleStatus.choices()}).get(status_display)
         return super().create(request, *args, **kwargs)

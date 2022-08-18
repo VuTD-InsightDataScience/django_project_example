@@ -12,7 +12,8 @@ User = get_user_model()
 class Example(TimeStampedModel, SoftDeletableModel, StatusModel):
     STATUS = ExampleStatus.choices()
 
-    creator = models.ForeignKey(User, related_name='examples', on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, related_name='creator_examples', on_delete=models.CASCADE)
+    modifier = models.ForeignKey(User, related_name='modifier_examples', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=True, default=None)
     total = models.IntegerField(default=0, null=True)
 
