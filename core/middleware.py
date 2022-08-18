@@ -19,7 +19,7 @@ class WhoDidMiddleware(MiddlewareMixin):
 
     @staticmethod
     def mark_who_did(user, sender, instance, **kwargs):
-        if user and hasattr(instance, 'creator_id'):
+        if user and hasattr(instance, 'creator_id') and not instance.creator_id:
             instance.creator_id = user.id
         if user and hasattr(instance, 'modifier_id'):
             instance.modifier_id = user.id
