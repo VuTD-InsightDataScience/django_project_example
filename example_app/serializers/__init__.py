@@ -1,1 +1,1 @@
-from .examples import ExampleDataSerializer, CustomExampleDataSerializer  # noqa
+from .examples import ExampleDataSerializer, CustomExampleDataSerializer, CreateExampleDataSerializer  # noqa

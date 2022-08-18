@@ -6,9 +6,10 @@ from rest_framework.permissions import IsAuthenticated
 
 from core.mixins import APIMixin
 from core.pagination import StandardPageNumberPagination
+from example_app.constants import ExampleStatus
 from example_app.filters import CreateListExamplesAPIViewFilters
 from example_app.models import Example
-from example_app.serializers import (CustomExampleDataSerializer, ExampleDataSerializer)
+from example_app.serializers import (CreateExampleDataSerializer, CustomExampleDataSerializer, ExampleDataSerializer)
 
 
 class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.ListCreateAPIView):
@@ -25,6 +26,8 @@ class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.List
     def get_serializer_class(self):
         if self.action in ['get_list_hotels']:
             return CustomExampleDataSerializer
+        if self.action in ['create']:
+            return CreateExampleDataSerializer
         return ExampleDataSerializer
 
     def get_permissions(self):
@@ -33,6 +36,12 @@ class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.List
     @action(detail=False, methods=['get'])
     def get_list_hotels(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        request.data['creator'] = request.user
+        status_display = request.data.pop('status_display')
+        request.data['status'] = dict({y: x for (x, y) in ExampleStatus.choices()}).get(status_display)
+        return super().create(request, *args, **kwargs)
 
 
 class RetrieveUpdateDestroyExampleAPIView(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView):

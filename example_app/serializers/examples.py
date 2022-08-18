@@ -15,3 +15,9 @@ class CustomExampleDataSerializer(ExampleDataSerializer):
         model = Example
         fields = ExampleDataSerializer.Meta.fields + ('total', 'status_display',)
         read_only_fields = ExampleDataSerializer.Meta.read_only_fields + ('total', 'status_display')
+
+
+class CreateExampleDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Example
+        fields = ('creator', 'name', 'status')
