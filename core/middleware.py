@@ -9,7 +9,7 @@ class WhoDidMiddleware(MiddlewareMixin):
         user = None
         if hasattr(request, 'user') and request.user.is_authenticated:
             user = request.user
-        if request.method not in ('POST', 'PUT', 'PATCH'):
+        if request.method in ('POST', 'PUT', 'PATCH'):
             mark_whodid = partial(self.mark_who_did, user)
             signals.pre_save.connect(
                 mark_whodid,
