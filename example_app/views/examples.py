@@ -9,7 +9,9 @@ from core.pagination import StandardPageNumberPagination
 from example_app.constants import ExampleStatus
 from example_app.filters import CreateListExamplesAPIViewFilters
 from example_app.models import Example
-from example_app.serializers import (CreateExampleDataSerializer, CustomExampleDataSerializer, ExampleDataSerializer)
+from example_app.serializers import (
+    CreateExampleDataSerializer, CustomExampleDataSerializer, ExampleDataSerializer, UpdateExampleDataSerializer
+)
 
 
 class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.ListCreateAPIView):
@@ -51,6 +53,8 @@ class RetrieveUpdateDestroyExampleAPIView(viewsets.GenericViewSet, generics.Retr
         return Example.objects.all()
 
     def get_serializer_class(self):
+        if self.action == 'update':
+            return UpdateExampleDataSerializer
         return ExampleDataSerializer
 
     def check_object_permissions(self, request, obj):
