@@ -1,3 +1,9 @@
+from django.contrib.auth import get_user_model
+from django.db import models
+
+User = get_user_model()
+
+
 class APIMixin(object):
     serializer_context = {}
 
@@ -20,3 +26,15 @@ class APIMixin(object):
         serializer_class = self.get_serializer_class()
         kwargs['context'] = self.get_serializer_context(**self.serializer_context)
         return serializer_class(*args, **kwargs)
+
+
+class TrackRecordChangeByMixin(object):
+    creator = models.ForeignKey(
+        User, on_delete=models.CASCADE
+    )
+    updated_by = models.ForeignKey(
+        User, on_delete=models.CASCADE
+    )
+    removed_by = models.ForeignKey(
+        User, on_delete=models.CASCADE
+    )

@@ -1,19 +1,15 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.indexes import Index
 from django.utils.translation import gettext as _
 from model_utils.models import SoftDeletableModel, StatusModel, TimeStampedModel
 
+from core.mixins import TrackRecordChangeByMixin
 from example_app.constants import ExampleStatus
 
-User = get_user_model()
 
-
-class Example(TimeStampedModel, SoftDeletableModel, StatusModel):
+class Example(TrackRecordChangeByMixin, TimeStampedModel, SoftDeletableModel, StatusModel):
     STATUS = ExampleStatus.choices()
 
-    creator = models.ForeignKey(User, related_name='creator_examples', on_delete=models.CASCADE)
-    modifier = models.ForeignKey(User, related_name='modifier_examples', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=True, default=None)
     total = models.IntegerField(default=0, null=True)
 
