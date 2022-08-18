@@ -20,4 +20,4 @@ class CustomExampleDataSerializer(ExampleDataSerializer):
 class CreateExampleDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Example
-        fields = ('creator', 'name', 'status')
+        fields = ('name', 'status')
