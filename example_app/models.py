@@ -16,9 +16,9 @@ class Example(TrackRecordChangeByMixin, TimeStampedModel, SoftDeletableModel, St
     name = models.CharField(max_length=255, blank=True, default=None)
     total = models.IntegerField(default=0, null=True)
 
-    creator = models.ForeignKey(User, related_name="creator_example", on_delete=models.CASCADE)
-    updated_by = models.ForeignKey(User, related_name="updated_by_example", on_delete=models.CASCADE)
-    removed_by = models.ForeignKey(User, related_name="removed_by_example", on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, related_name="creator_example", on_delete=models.SET_NULL, null=True)
+    updated_by = models.ForeignKey(User, related_name="updated_by_example", on_delete=models.SET_NULL, null=True)
+    removed_by = models.ForeignKey(User, related_name="removed_by_example", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return '{}'.format(self.name)

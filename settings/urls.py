@@ -7,6 +7,6 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('public-api/', include('core.public_api', namespace='public-api')),
-    path('private-api/', include('core.private_api', namespace='private-api')),
+    path('public-api/', include('core.public_api', namespace='public_api')),
+    path('private-api/', include('core.private_api', namespace='private_api')),
 ]

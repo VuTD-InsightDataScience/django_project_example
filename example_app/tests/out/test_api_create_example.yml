@@ -1,0 +1,4 @@
+results: !!python/object/apply:hamcrest.has_entries
+  -
+    name: "test name"
+    status: "O"

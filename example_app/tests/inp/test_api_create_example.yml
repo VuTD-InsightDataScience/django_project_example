@@ -1,0 +1,4 @@
+api_name: public_api:create-list-example-view-set
+data:
+ name: "test name"
+ status_display: "Opening"

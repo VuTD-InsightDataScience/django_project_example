@@ -15,6 +15,13 @@ flake8 = "^5.0.4"
 flake8-django = "^1.1.5"
 psycopg2 = "^2.9.3"
 pytest = "^7.1.2"
+openpyxl = "^3.0.10"
+munch = "^2.5.0"
+PyYAML = "^6.0"
+mixer = "^7.2.2"
+PyHamcrest = "^2.0.4"
+pytest-cov = "^3.0.0"
+pytest-django = "^4.5.2"
 
 [tool.poetry.dev-dependencies]
 

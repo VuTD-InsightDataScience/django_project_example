@@ -1,3 +1,3 @@
-app_name = 'private-api'
+app_name = 'private_api'
 
 urlpatterns = []
