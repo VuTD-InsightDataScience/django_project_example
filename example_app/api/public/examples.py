@@ -2,7 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from core.mixins import APIMixin
 from core.pagination import StandardPageNumberPagination
@@ -16,7 +16,7 @@ from example_app.serializers import (
 
 class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.ListCreateAPIView):
     pagination_class = StandardPageNumberPagination
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     filter_backends = (SearchFilter, DjangoFilterBackend, OrderingFilter)
     filterset_class = CreateListExamplesAPIViewFilters
     search_fields = ('name',)

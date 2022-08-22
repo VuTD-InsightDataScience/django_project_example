@@ -4,7 +4,7 @@ from example_app.api.public import examples as example_views
 
 urlpatterns = []
 
-# Hotel urls
+# Example urls
 urlpatterns += [
     path('examples/',
          view=example_views.CreateListExamplesAPIView.as_view({'get': 'list', 'post': 'create'}),

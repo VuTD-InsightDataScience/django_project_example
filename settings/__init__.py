@@ -32,7 +32,7 @@ TESTING = False
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
-ADMINS = [('Platform Team', 'community-dev@insightdatascience.com')]
+ADMINS = [('Admin', 'admin@localhost')]
 
 # Application definition
 
