@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Example"
-version = "0.4.1"
+version = "1.0.0"
 description = "This is example project"
 authors = ["Vu Tran <vu.trandang@amela.vn>"]
 
