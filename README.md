@@ -30,3 +30,8 @@ for release new feature
 bumpversion major
 ```
 for big change
+
+Push tags to remote repository
+```
+git push origin --tags
+```
