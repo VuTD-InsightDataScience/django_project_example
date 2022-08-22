@@ -22,6 +22,7 @@ mixer = "^7.2.2"
 PyHamcrest = "^2.0.4"
 pytest-cov = "^3.0.0"
 pytest-django = "^4.5.2"
+bumpversion = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 
