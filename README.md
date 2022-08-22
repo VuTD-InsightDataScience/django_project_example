@@ -13,3 +13,15 @@ poetry run flake8
 ```
 poetry run test
 ```
+
+# Bumpversion
+Using 
+```
+bumpversion patch
+```
+for fix bug
+
+```
+bumpversion minor
+```
+for release new feature
