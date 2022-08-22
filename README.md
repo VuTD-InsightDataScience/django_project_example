@@ -25,3 +25,8 @@ for fix bug
 bumpversion minor
 ```
 for release new feature
+
+```
+bumpversion major
+```
+for big change
