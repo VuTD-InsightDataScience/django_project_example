@@ -1,8 +1,5 @@
-import os
-import re
 from functools import partial
 
-from django.conf import settings
 from django.db.models import signals
 from django.utils.deprecation import MiddlewareMixin
 
@@ -36,11 +33,3 @@ class WhoDidMiddleware(MiddlewareMixin):
     def mark_who_deleted(user, sender, instance, **kwargs):
         if user and hasattr(instance, 'removed_by_id'):
             instance.removed_by = user.id
-
-
-class PublicApiMiddleware(MiddlewareMixin):
-    def process_request(self, request):
-        if bool(re.match(settings.PUBLIC_URLS_REGEX, request.path_info)):
-            settings.ALLOWED_HOSTS = ["*"]
-        else:
-            settings.ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
