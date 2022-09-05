@@ -1,3 +1,4 @@
+from django.views.generic import detail
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets
 from rest_framework.decorators import action
@@ -33,11 +34,19 @@ class CreateListExamplesAPIView(APIMixin, viewsets.GenericViewSet, generics.List
         return ExampleDataSerializer
 
     def get_permissions(self):
+        if self.action in ['get_list_hotels']:
+            self.permission_classes += [IsAuthenticated]
         return super().get_permissions()
 
     @action(detail=False, methods=['get'])
     def get_list_hotels(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+    @action(detail=False, methods=['get'])
+    def export_excel(self, request, *args, **kwargs):
+        self.__setattr__('paging',  None)
+        self.filterset_class = APIMixin
+        pass
 
     def create(self, request, *args, **kwargs):
         status_display = request.data.pop('status_display', None)
