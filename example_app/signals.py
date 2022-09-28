@@ -10,6 +10,10 @@ def handle_pre_save_example(sender, instance, **kwargs):
     pass
 
 
+
+
+
+
 @receiver(post_save, sender=Example)
 def handle_post_save_example(sender, instance, created, **kwargs):
     """ Handle when created or updated instance successfully """
